@@ -21,9 +21,11 @@ namespace InstituteManagementSystem.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("Institute", throwIfV1Schema: false)
         {
         }
+
+        public DbSet<Student> Students { get; set; }
 
         public static ApplicationDbContext Create()
         {
