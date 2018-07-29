@@ -19,6 +19,15 @@ namespace InstituteManagementSystem.Controllers
         {
             _context.Dispose();
         }
+        [HttpPost]
+        public ActionResult Save(Student student)
+        {
+            _context.Students.Add(student);
+            _context.SaveChanges();
+            return RedirectToAction("Index","Student");
+        }
+
+
         // GET: Student
         public ActionResult Index()
         {

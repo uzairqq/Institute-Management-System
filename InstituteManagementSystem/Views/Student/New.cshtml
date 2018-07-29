@@ -1,7 +1,29 @@
-﻿@model dynamic
+﻿@model InstituteManagementSystem.Models.Student
 
 @{
     ViewBag.Title = "New Customer";
 }
 
 <h2>New Customer</h2>
+
+@using (Html.BeginForm("Save", "Student"))
+{
+    <div class="form-group">
+        @Html.LabelFor(i => i.Name)
+        @Html.TextBoxFor(i => i.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.LastName)
+        @Html.TextBoxFor(i => i.LastName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.Gender)
+        @Html.TextBoxFor(i => i.Gender,new {@class="form-control"})
+        @* @Html.DropDownListFor(model => model.Gender, new SelectList(Model.Gender, "GenderId", "GenderName"), "- Please Select Gender -")*@
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(i => i.DateOfBirth)
+        @Html.TextBoxFor(i => i.DateOfBirth,new {@class="form-control"})
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}
