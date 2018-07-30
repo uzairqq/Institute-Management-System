@@ -26,7 +26,20 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(i => i.DateOfBirth)
-        @Html.TextBoxFor(i => i.DateOfBirth,new {@class="form-control"})
+        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })        @*@Html.TextBoxFor(i => i.DateOfBirth,new {@class="form-control"})*@
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $(function () { // will trigger when the document is ready
+                $('.datepicker').datepicker(); //Initialise any date pickers
+            });
+        })
+     
+    </script>
+
 }

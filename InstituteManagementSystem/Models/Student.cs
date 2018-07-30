@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Migrations.Model;
@@ -26,6 +27,8 @@ namespace InstituteManagementSystem.Models
         public string Gender { get; set; }
 
         [Required]
+        [DisplayName("Date of Birth")]
+        [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
     }
