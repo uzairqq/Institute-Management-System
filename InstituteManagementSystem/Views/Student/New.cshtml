@@ -18,8 +18,11 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(i => i.Gender)
-        @Html.TextBoxFor(i => i.Gender,new {@class="form-control"})
-        @* @Html.DropDownListFor(model => model.Gender, new SelectList(Model.Gender, "GenderId", "GenderName"), "- Please Select Gender -")*@
+        @Html.DropDownList("Gender", new List<SelectListItem>
+        {
+            new SelectListItem{ Text=@"Male", Value="Male"},
+            new SelectListItem{ Text=@"Female", Value="Female"}
+        }, "--- Select ---", new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(i => i.DateOfBirth)
