@@ -31,9 +31,11 @@ namespace InstituteManagementSystem.Controllers
         // GET: Student
         public ActionResult Index()
         {
-           var students= _context.Students.ToList();
+            var students= _context.Students.ToList();
             return View(students);
         }
+
+
 
         public ActionResult New()
         {
