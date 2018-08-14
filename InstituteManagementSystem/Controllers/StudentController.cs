@@ -42,9 +42,12 @@ namespace InstituteManagementSystem.Controllers
             return View();
         }
 
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-            return View();
+            var student = _context.Students.Single(i => i.Id == id);
+            if (student == null)
+                return HttpNotFound();
+            return View(student);
         }
 
         public ActionResult Edit()

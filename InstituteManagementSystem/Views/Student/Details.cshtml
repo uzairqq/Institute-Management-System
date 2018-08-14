@@ -1,7 +1,15 @@
-﻿@model dynamic
+﻿@model InstituteManagementSystem.Models.Student
 
 @{
     ViewBag.Title = "Student Details";
 }
 
 <h2>Student Details</h2>
+
+
+
+<b>Name:</b> @Model.Name<br/>
+<b>LastName:</b>@Model.LastName <br />
+<b>Gender </b>: @Model.Gender <br />
+<b>Date Of Birth:</b> : @Model.DateOfBirth <br />
+@Html.ActionLink("Back","Index","Student",new{ @class="btn btn-info"})

@@ -25,7 +25,7 @@
             @foreach (var student in Model)
             {
                 <tr>
-                    <td>@student.Name</td>
+                    <td>@Html.ActionLink(student.Name,"Details","Student",new {id=student.Id},null)</td>
                     <td>@student.LastName</td>
                     <td>@student.Gender</td>
                     <td>@student.DateOfBirth.ToLongDateString()</td>
