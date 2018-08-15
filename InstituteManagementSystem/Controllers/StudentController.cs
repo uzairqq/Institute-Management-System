@@ -19,10 +19,21 @@ namespace InstituteManagementSystem.Controllers
         {
             _context.Dispose();
         }
+
         [HttpPost]
         public ActionResult Save(Student student)
         {
-            _context.Students.Add(student);
+            if (student.Id == 0)
+                _context.Students.Add(student);
+            else
+            {
+                var studentInDb = _context.Students.Single(i => i.Id==student.Id);
+
+                studentInDb.Name = student.Name;
+                studentInDb.LastName = student.LastName;
+                studentInDb.Gender = student.Gender;
+                studentInDb.DateOfBirth = student.DateOfBirth;
+            }
             _context.SaveChanges();
             return RedirectToAction("Index","Student");
         }
@@ -50,9 +61,13 @@ namespace InstituteManagementSystem.Controllers
             return View(student);
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            var studentInDb = _context.Students.SingleOrDefault(i => i.Id == id);
+            if (studentInDb == null)
+                return HttpNotFound();
+
+            return View(studentInDb);
         }
 
     }

@@ -30,7 +30,7 @@
                     <td>@student.Gender</td>
                     <td>@student.DateOfBirth.ToLongDateString()</td>
                     <td>
-                        <button class="btn-link">Update</button> |
+                        @Html.ActionLink("Update","Edit","Student",new {id=student.Id},null) |
                         <button class="btn-link">Delete</button>
                     </td>
                 </tr>
