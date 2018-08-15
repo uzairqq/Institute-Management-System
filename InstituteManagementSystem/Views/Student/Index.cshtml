@@ -31,7 +31,7 @@
                     <td>@student.DateOfBirth.ToLongDateString()</td>
                     <td>
                         @Html.ActionLink("Update","Edit","Student",new {id=student.Id},null) |
-                        <button class="btn-link">Delete</button>
+                        @Html.ActionLink("Delete","Delete","Student",new {id=student.Id},null)
                     </td>
                 </tr>
             }

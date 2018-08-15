@@ -70,5 +70,24 @@ namespace InstituteManagementSystem.Controllers
             return View(studentInDb);
         }
 
+        public ActionResult Remove(int id)
+        {
+            var studentInDb = _context.Students.SingleOrDefault(i => i.Id == id);
+            if (studentInDb == null)
+                return HttpNotFound();
+
+            _context.Students.Remove(studentInDb);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Student");
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var studentInDb = _context.Students.SingleOrDefault(i => i.Id == id);
+            if (studentInDb == null)
+                return HttpNotFound();
+
+            return View(studentInDb);
+        }
     }
 }

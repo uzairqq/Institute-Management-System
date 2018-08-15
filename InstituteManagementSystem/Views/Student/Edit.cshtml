@@ -29,5 +29,5 @@
     </div>
     @Html.HiddenFor(m => m.Id)
     <button type="submit" class="btn btn-primary">Update</button>
-    <button type="submit" class="btn btn-block">Back</button>
+    @Html.ActionLink("Back","Index","Student",new {@class="btn btn-info"})
 }
