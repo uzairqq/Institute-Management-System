@@ -2,7 +2,7 @@
 
 namespace Sms.Constants
 {
-    public class Class1
+    public class Constant
     {
     }
 }
