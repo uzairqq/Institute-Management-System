@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Sms.Constants
 {
-    class Enum
+    public enum Enums
     {
+        FailureId = 0,
     }
 }

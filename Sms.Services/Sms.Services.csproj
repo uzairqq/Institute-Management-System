@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Service\Interfaces\" />
-    <Folder Include="Service\Implementation\" />
+    <ProjectReference Include="..\Sms.Constants\Sms.Constants.csproj" />
+    <ProjectReference Include="..\Sms.Domain\Sms.Domain.csproj" />
+    <ProjectReference Include="..\Sms.Utils\Sms.Utils.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sms.Domain;
+using Sms.Services;
 
 namespace Sms.Web
 {
@@ -37,8 +39,9 @@ namespace Sms.Web
 
                 options.ConfigureWarnings(builder => builder.Throw());
             });
-            //DataAccessRegistry.RegisterRepository(services);
-            //ComponentAccessRegistry.RegisterServices(services);
+
+            DataAccessRegistry.RegisterRepository(services);
+            ComponentAccessRegistry.RegisterServices(services);
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -46,6 +49,8 @@ namespace Sms.Web
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddAutoMapper();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
