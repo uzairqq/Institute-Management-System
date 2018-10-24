@@ -3,31 +3,44 @@
 @{
     Layout = "_Layout";
 }
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
 @Html.ActionLink("New", "New", "Student", null, new { @class = "btn btn-primary" })
 
 
-<table  class="table table-hover table-bordered ">
+<table id="studentTable" class="table table-hover table-bordered ">
     <thead>
         <tr>
             <th>Name</th>
+            <th>Father Name</th>
+            <th>Email</th>
+            <th>Mobile Number</th>
+            <th>Home Number</th>
+            <th>Address</th>
             <th>Actions</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var stu in Model)
-        {
-            <tr>
-                <td>@Html.ActionLink(stu.Name, "Update", "Student", new { id = stu.Id })</td>
-                <td>
-                    @Html.ActionLink("Update", "Update", "Student", new { id = stu.Id, stu.Name }, new { @class = "btn btn-primary" }) 
-                    @Html.ActionLink("Delete", "Delete", "Student", new { id = stu.Id }, new { @class = "btn btn-danger" })
-                </td>
-            </tr>
-        }
-    </tbody>
+    <tbody></tbody>
 </table>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#studentTable').DataTable();
+    });
+</script>
+
+
+
+
+
+
+

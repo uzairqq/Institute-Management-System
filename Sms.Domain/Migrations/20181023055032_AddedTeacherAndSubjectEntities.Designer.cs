@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Sms.Domain;
@@ -9,9 +10,10 @@ using Sms.Domain;
 namespace Sms.Domain.Migrations
 {
     [DbContext(typeof(SmsDbContext))]
-    partial class SmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181023055032_AddedTeacherAndSubjectEntities")]
+    partial class AddedTeacherAndSubjectEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,55 +54,6 @@ namespace Sms.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Subjects", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("SubjectName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Subjects");
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Teacher", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Address");
-
-                    b.Property<int>("Age");
-
-                    b.Property<DateTime>("DateOfBirth");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<int>("SubjectId");
-
-                    b.Property<int?>("SubjectsId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SubjectsId");
-
-                    b.ToTable("Teachers");
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Teacher", b =>
-                {
-                    b.HasOne("Sms.Domain.Entities.Subjects", "Subjects")
-                        .WithMany()
-                        .HasForeignKey("SubjectsId");
                 });
 #pragma warning restore 612, 618
         }

@@ -190,4 +190,16 @@
     <ProjectReference Include="..\Sms.Services\Sms.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Teacher\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Teacher\New.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Teacher\Update.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>
