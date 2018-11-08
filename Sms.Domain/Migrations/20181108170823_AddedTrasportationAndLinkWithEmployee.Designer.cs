@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Sms.Domain;
@@ -9,9 +10,10 @@ using Sms.Domain;
 namespace Sms.Domain.Migrations
 {
     [DbContext(typeof(SmsDbContext))]
-    partial class SmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181108170823_AddedTrasportationAndLinkWithEmployee")]
+    partial class AddedTrasportationAndLinkWithEmployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -374,8 +376,6 @@ namespace Sms.Domain.Migrations
 
                     b.Property<int>("ClassId");
 
-                    b.Property<int?>("ClassesId");
-
                     b.Property<int>("CreatedById");
 
                     b.Property<DateTime>("CreatedOn");
@@ -412,15 +412,9 @@ namespace Sms.Domain.Migrations
 
                     b.Property<int>("RollNoId");
 
-                    b.Property<int?>("TransportationId");
-
                     b.Property<string>("UserName");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClassesId");
-
-                    b.HasIndex("TransportationId");
 
                     b.ToTable("Students");
                 });
@@ -532,17 +526,6 @@ namespace Sms.Domain.Migrations
                         .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Student", b =>
-                {
-                    b.HasOne("Sms.Domain.Entities.Classes", "Classes")
-                        .WithMany()
-                        .HasForeignKey("ClassesId");
-
-                    b.HasOne("Sms.Domain.Entities.Transportation", "Transportation")
-                        .WithMany()
-                        .HasForeignKey("TransportationId");
                 });
 
             modelBuilder.Entity("Sms.Domain.Entities.Subject", b =>

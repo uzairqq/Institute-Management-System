@@ -38,8 +38,7 @@ namespace Sms.Domain.Entities
         public string MobileNumber { get; set; }
 
         public string Qualifications { get; set; }
-
-        public int TransportationId { get; set; }
+       
         [StringLength(40)]
         public string NicNumber { get; set; }
 
@@ -48,6 +47,9 @@ namespace Sms.Domain.Entities
         public int EmployeeTypeId { get; set; }
 
         public EmployeeType EmployeeType { get; set; }
+
+        public int TransportationId { get; set; }
+        public Transportation Transportation { get; set; }
 
         //public int SubjectId { get; set; }
         //public Subjects Subjects { get; set; }

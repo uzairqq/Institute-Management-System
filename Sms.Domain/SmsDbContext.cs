@@ -24,6 +24,11 @@ namespace Sms.Domain
         public DbSet<Assignements> Assignments { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Classes> Classes { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<NewsBoard> NewsBoards { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Transportation> Transportations { get; set; }
+
 
     }
 }

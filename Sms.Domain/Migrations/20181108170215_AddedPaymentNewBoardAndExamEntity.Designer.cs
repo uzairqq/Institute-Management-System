@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Sms.Domain;
@@ -9,9 +10,10 @@ using Sms.Domain;
 namespace Sms.Domain.Migrations
 {
     [DbContext(typeof(SmsDbContext))]
-    partial class SmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181108170215_AddedPaymentNewBoardAndExamEntity")]
+    partial class AddedPaymentNewBoardAndExamEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -185,8 +187,6 @@ namespace Sms.Domain.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EmployeeTypeId");
-
-                    b.HasIndex("TransportationId");
 
                     b.ToTable("Employees");
                 });
@@ -374,8 +374,6 @@ namespace Sms.Domain.Migrations
 
                     b.Property<int>("ClassId");
 
-                    b.Property<int?>("ClassesId");
-
                     b.Property<int>("CreatedById");
 
                     b.Property<DateTime>("CreatedOn");
@@ -412,15 +410,9 @@ namespace Sms.Domain.Migrations
 
                     b.Property<int>("RollNoId");
 
-                    b.Property<int?>("TransportationId");
-
                     b.Property<string>("UserName");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClassesId");
-
-                    b.HasIndex("TransportationId");
 
                     b.ToTable("Students");
                 });
@@ -455,32 +447,6 @@ namespace Sms.Domain.Migrations
                     b.ToTable("Subjects");
                 });
 
-            modelBuilder.Entity("Sms.Domain.Entities.Transportation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CreatedById");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<string>("Description");
-
-                    b.Property<string>("DriverContact");
-
-                    b.Property<int>("Fare");
-
-                    b.Property<int>("LastUpdatedById");
-
-                    b.Property<DateTime>("LastUpdatedOn");
-
-                    b.Property<string>("Type");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Transportations");
-                });
-
             modelBuilder.Entity("Sms.Domain.Entities.Assignements", b =>
                 {
                     b.HasOne("Sms.Domain.Entities.Classes", "Class")
@@ -507,11 +473,6 @@ namespace Sms.Domain.Migrations
                         .WithMany()
                         .HasForeignKey("EmployeeTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Sms.Domain.Entities.Transportation", "Transportation")
-                        .WithMany()
-                        .HasForeignKey("TransportationId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Sms.Domain.Entities.Parent", b =>
@@ -532,17 +493,6 @@ namespace Sms.Domain.Migrations
                         .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Student", b =>
-                {
-                    b.HasOne("Sms.Domain.Entities.Classes", "Classes")
-                        .WithMany()
-                        .HasForeignKey("ClassesId");
-
-                    b.HasOne("Sms.Domain.Entities.Transportation", "Transportation")
-                        .WithMany()
-                        .HasForeignKey("TransportationId");
                 });
 
             modelBuilder.Entity("Sms.Domain.Entities.Subject", b =>

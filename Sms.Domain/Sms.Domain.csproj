@@ -11,6 +11,11 @@
     <Compile Remove="Migrations\20181108133730_DeletedInSubjets.cs" />
     <Compile Remove="Migrations\20181108154110_Added.cs" />
     <Compile Remove="Migrations\20181108160029_Add.cs" />
+    <Compile Remove="Migrations\20181108170649_AddedTransportationAndItsLinkWithStdentAndEmployee.cs" />
+    <Compile Remove="Migrations\20181108172551_AddedTranportationLinkInStudent.cs" />
+    <Compile Remove="Migrations\20181108173147_AddedTransportationInStudent.cs" />
+    <Compile Remove="Migrations\20181108182520_AddedTransportationLinkWithStudnt.cs" />
+    <Compile Remove="Migrations\20181108182758_AddedTranportationInStudet.cs" />
   </ItemGroup>
 
   <ItemGroup>
