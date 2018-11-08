@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Sms.Domain;
@@ -9,9 +10,10 @@ using Sms.Domain;
 namespace Sms.Domain.Migrations
 {
     [DbContext(typeof(SmsDbContext))]
-    partial class SmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181108162908_AddedAssignmentEntity")]
+    partial class AddedAssignmentEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,8 +52,6 @@ namespace Sms.Domain.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClassId");
 
                     b.ToTable("Assignments");
                 });
@@ -106,28 +106,6 @@ namespace Sms.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AttendanceTypes");
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Classes", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Class")
-                        .IsRequired()
-                        .HasMaxLength(30);
-
-                    b.Property<int>("CreatedById");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<int>("LastUpdatedById");
-
-                    b.Property<DateTime>("LastUpdatedOn");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Classes");
                 });
 
             modelBuilder.Entity("Sms.Domain.Entities.Employee", b =>
@@ -330,44 +308,6 @@ namespace Sms.Domain.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Sms.Domain.Entities.Subject", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ClassId");
-
-                    b.Property<int?>("ClassesId");
-
-                    b.Property<int>("CreatedById");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<int>("EmployeeId");
-
-                    b.Property<int>("LastUpdatedById");
-
-                    b.Property<DateTime>("LastUpdatedOn");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassesId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("Subjects");
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Assignements", b =>
-                {
-                    b.HasOne("Sms.Domain.Entities.Classes", "Class")
-                        .WithMany()
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("Sms.Domain.Entities.Attendance", b =>
                 {
                     b.HasOne("Sms.Domain.Entities.AttendanceType", "AttendanceType")
@@ -393,18 +333,6 @@ namespace Sms.Domain.Migrations
                     b.HasOne("Sms.Domain.Entities.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Subject", b =>
-                {
-                    b.HasOne("Sms.Domain.Entities.Classes", "Classes")
-                        .WithMany()
-                        .HasForeignKey("ClassesId");
-
-                    b.HasOne("Sms.Domain.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

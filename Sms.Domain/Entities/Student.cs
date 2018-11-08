@@ -14,13 +14,12 @@ namespace Sms.Domain.Entities
         [StringLength(100)]
         public string Lastname { get; set; }
 
+        [Required]
         public int RollNoId { get; set; }
 
         public string UserName { get; set; }
 
         public string EmailAddress { get; set; }
-
-        public string Password { get; set; }
 
         public string Gender { get; set; }
 
@@ -43,7 +42,7 @@ namespace Sms.Domain.Entities
         public DateTime DateOfBirth { get; set; }
 
         public int ClassId { get; set; }
-
+        
         public string Picture { get; set; }
     }
 }

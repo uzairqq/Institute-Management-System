@@ -13,14 +13,14 @@ namespace Sms.Services.Service.Implementation
 {
    public class TeacherService:ITeacherService
     {
-        private readonly IAsyncRepository<Teacher> _asyncRepository;
+        private readonly IAsyncRepository<Employee> _asyncRepository;
         private readonly IMapper _mapper;
-        private readonly IRepository<Teacher> _teacherRepository;
+        private readonly IRepository<Employee> _teacherRepository;
 
         public TeacherService(
-            IAsyncRepository<Teacher> asyncRepository,
+            IAsyncRepository<Employee> asyncRepository,
             IMapper mapper,
-            IRepository<Teacher> teacherRepository
+            IRepository<Employee> teacherRepository
             )
         {
             _asyncRepository = asyncRepository;
@@ -33,7 +33,7 @@ namespace Sms.Services.Service.Implementation
         {
             try
             {
-                var teacher = await _asyncRepository.AddAsync(_mapper.Map<Teacher>(dto));
+                var teacher = await _asyncRepository.AddAsync(_mapper.Map<Employee>(dto));
                 return new ResponseMessageDto()
                 {
                     Id = teacher.Id,
@@ -74,7 +74,7 @@ namespace Sms.Services.Service.Implementation
         {
             try
             {
-                await _asyncRepository.DeleteAsync(_mapper.Map<Teacher>(dto));
+                await _asyncRepository.DeleteAsync(_mapper.Map<Employee>(dto));
                 return new ResponseMessageDto()
                 {
                     Id = dto.Id,
@@ -114,7 +114,7 @@ namespace Sms.Services.Service.Implementation
         {
             try
             {
-                await _asyncRepository.UpdateAsync(_mapper.Map<Teacher>(dto));
+                await _asyncRepository.UpdateAsync(_mapper.Map<Employee>(dto));
                 return new ResponseMessageDto()
                 {
                     Id = dto.Id,

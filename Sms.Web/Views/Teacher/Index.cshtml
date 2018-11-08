@@ -36,7 +36,7 @@
                 <td>@stu.PhoneNumber</td>
                 <td>@stu.Age</td>
                 <td>@stu.DateOfBirth</td>
-                <td>@stu.Subjects.SubjectName</td>
+                @*<td>@stu.Subjects.SubjectName</td>*@
                 <td>Actions</td>
                 <td>
                     @Html.ActionLink("Update", "Update", "Teacher", new { id = stu.Id, stu.Name }, new { @class = "btn btn-primary" }) 

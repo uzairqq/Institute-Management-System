@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Sms.Domain.Entities
 {
-   public  class Subjects:BaseEntity
+   public class AttendanceType:BaseEntity
     {
-        public string SubjectName { get; set; }
+        public string Type { get; set; }
     }
 }

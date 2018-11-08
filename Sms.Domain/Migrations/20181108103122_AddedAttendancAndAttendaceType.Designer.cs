@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Sms.Domain;
@@ -9,52 +10,16 @@ using Sms.Domain;
 namespace Sms.Domain.Migrations
 {
     [DbContext(typeof(SmsDbContext))]
-    partial class SmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181108103122_AddedAttendancAndAttendaceType")]
+    partial class AddedAttendancAndAttendaceType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            modelBuilder.Entity("Sms.Domain.Entities.Assignements", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ClassId");
-
-                    b.Property<int>("CreatedById");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<DateTime>("Deadline");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1024);
-
-                    b.Property<string>("File")
-                        .IsRequired();
-
-                    b.Property<int>("LastUpdatedById");
-
-                    b.Property<DateTime>("LastUpdatedOn");
-
-                    b.Property<int>("SubjectId");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassId");
-
-                    b.ToTable("Assignments");
-                });
 
             modelBuilder.Entity("Sms.Domain.Entities.Attendance", b =>
                 {
@@ -77,11 +42,11 @@ namespace Sms.Domain.Migrations
 
                     b.Property<DateTime>("LastUpdatedOn");
 
-                    b.Property<string>("Status");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AttendanceTypeId");
+
+                    b.HasIndex("ClassId");
 
                     b.HasIndex("EmployeeId");
 
@@ -108,14 +73,10 @@ namespace Sms.Domain.Migrations
                     b.ToTable("AttendanceTypes");
                 });
 
-            modelBuilder.Entity("Sms.Domain.Entities.Classes", b =>
+            modelBuilder.Entity("Sms.Domain.Entities.Class", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Class")
-                        .IsRequired()
-                        .HasMaxLength(30);
 
                     b.Property<int>("CreatedById");
 
@@ -127,7 +88,7 @@ namespace Sms.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Classes");
+                    b.ToTable("Class");
                 });
 
             modelBuilder.Entity("Sms.Domain.Entities.Employee", b =>
@@ -137,8 +98,6 @@ namespace Sms.Domain.Migrations
 
                     b.Property<string>("Address")
                         .HasMaxLength(1024);
-
-                    b.Property<int>("Age");
 
                     b.Property<int>("CreatedById");
 
@@ -211,70 +170,6 @@ namespace Sms.Domain.Migrations
                     b.ToTable("EmployeeTypes");
                 });
 
-            modelBuilder.Entity("Sms.Domain.Entities.Library", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Author");
-
-                    b.Property<int>("CreatedById");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<string>("Description");
-
-                    b.Property<int>("LastUpdatedById");
-
-                    b.Property<DateTime>("LastUpdatedOn");
-
-                    b.Property<string>("Price");
-
-                    b.Property<string>("Status");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Libraries");
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Parent", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Address");
-
-                    b.Property<int>("CreatedById");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("Gender");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<int>("LastUpdatedById");
-
-                    b.Property<DateTime>("LastUpdatedOn");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<string>("Profession");
-
-                    b.Property<int>("StudentId");
-
-                    b.Property<string>("UserName");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Parents");
-                });
-
             modelBuilder.Entity("Sms.Domain.Entities.Student", b =>
                 {
                     b.Property<int>("Id")
@@ -316,6 +211,8 @@ namespace Sms.Domain.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
+                    b.Property<string>("Password");
+
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(20);
 
@@ -330,20 +227,44 @@ namespace Sms.Domain.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Sms.Domain.Entities.Subject", b =>
+            modelBuilder.Entity("Sms.Domain.Entities.Subjects", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("ClassId");
-
-                    b.Property<int?>("ClassesId");
 
                     b.Property<int>("CreatedById");
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<int>("EmployeeId");
+                    b.Property<int>("LastUpdatedById");
+
+                    b.Property<DateTime>("LastUpdatedOn");
+
+                    b.Property<string>("SubjectName");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subjects");
+                });
+
+            modelBuilder.Entity("Sms.Domain.Entities.Teacher", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Address");
+
+                    b.Property<int>("Age");
+
+                    b.Property<int>("CreatedById");
+
+                    b.Property<DateTime>("CreatedOn");
+
+                    b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("LastName");
 
                     b.Property<int>("LastUpdatedById");
 
@@ -351,21 +272,17 @@ namespace Sms.Domain.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("PhoneNumber");
+
+                    b.Property<int>("SubjectId");
+
+                    b.Property<int?>("SubjectsId");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassesId");
+                    b.HasIndex("SubjectsId");
 
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("Subjects");
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Assignements", b =>
-                {
-                    b.HasOne("Sms.Domain.Entities.Classes", "Class")
-                        .WithMany()
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.ToTable("Teachers");
                 });
 
             modelBuilder.Entity("Sms.Domain.Entities.Attendance", b =>
@@ -373,6 +290,11 @@ namespace Sms.Domain.Migrations
                     b.HasOne("Sms.Domain.Entities.AttendanceType", "AttendanceType")
                         .WithMany()
                         .HasForeignKey("AttendanceTypeId");
+
+                    b.HasOne("Sms.Domain.Entities.Class", "Class")
+                        .WithMany()
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Sms.Domain.Entities.Employee", "Employee")
                         .WithMany()
@@ -388,24 +310,11 @@ namespace Sms.Domain.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Sms.Domain.Entities.Parent", b =>
+            modelBuilder.Entity("Sms.Domain.Entities.Teacher", b =>
                 {
-                    b.HasOne("Sms.Domain.Entities.Student", "Student")
+                    b.HasOne("Sms.Domain.Entities.Subjects", "Subjects")
                         .WithMany()
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Subject", b =>
-                {
-                    b.HasOne("Sms.Domain.Entities.Classes", "Classes")
-                        .WithMany()
-                        .HasForeignKey("ClassesId");
-
-                    b.HasOne("Sms.Domain.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("SubjectsId");
                 });
 #pragma warning restore 612, 618
         }

@@ -15,6 +15,5 @@ namespace Sms.Domain.Dto
         public int Age { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int SubjectId { get; set; }
-        public Subjects Subjects { get; set; }
     }
 }

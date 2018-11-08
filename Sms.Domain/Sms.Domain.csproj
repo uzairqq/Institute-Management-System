@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20181108124747_AddAssignments.cs" />
+    <Compile Remove="Migrations\20181108124854_AddedAssignments.cs" />
+    <Compile Remove="Migrations\20181108132459_Addd.cs" />
+    <Compile Remove="Migrations\20181108133730_DeletedInSubjets.cs" />
+    <Compile Remove="Migrations\20181108154110_Added.cs" />
+    <Compile Remove="Migrations\20181108160029_Add.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Helper\" />
     <Folder Include="Specification\" />
   </ItemGroup>

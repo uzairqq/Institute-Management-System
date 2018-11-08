@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Sms.Domain;
@@ -9,9 +10,10 @@ using Sms.Domain;
 namespace Sms.Domain.Migrations
 {
     [DbContext(typeof(SmsDbContext))]
-    partial class SmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181108163719_AddedSubjectAndClasse")]
+    partial class AddedSubjectAndClasse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,8 +52,6 @@ namespace Sms.Domain.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ClassId");
 
                     b.ToTable("Assignments");
                 });
@@ -358,14 +358,6 @@ namespace Sms.Domain.Migrations
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Subjects");
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Assignements", b =>
-                {
-                    b.HasOne("Sms.Domain.Entities.Classes", "Class")
-                        .WithMany()
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Sms.Domain.Entities.Attendance", b =>
