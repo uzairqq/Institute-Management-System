@@ -14,6 +14,16 @@ namespace Sms.Domain.Entities
         [StringLength(100)]
         public string Lastname { get; set; }
 
+        public int RollNoId { get; set; }
+
+        public string UserName { get; set; }
+
+        public string EmailAddress { get; set; }
+
+        public string Password { get; set; }
+
+        public string Gender { get; set; }
+
         [StringLength(1024)]
         public string Address { get; set; }
 
@@ -21,7 +31,7 @@ namespace Sms.Domain.Entities
         public string MobileNumber { get; set; }
 
         [StringLength(20)]
-        public string HomeNumber { get; set; }
+        public string PhoneNumber { get; set; }
 
         [StringLength(50)]
         public string Email { get; set; }
@@ -31,5 +41,9 @@ namespace Sms.Domain.Entities
         public int EmergencyContact { get; set; }
 
         public DateTime DateOfBirth { get; set; }
+
+        public int ClassId { get; set; }
+
+        public string Picture { get; set; }
     }
 }

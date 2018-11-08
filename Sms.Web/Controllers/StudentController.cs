@@ -16,10 +16,16 @@ namespace Sms.Web.Controllers
             _studentService = studentService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var stu = await _studentService.GetAll();
-            return View(stu);
+            return View();
+        }
+
+        [HttpGet("index/data")]
+        public async Task<IActionResult> IndexData()
+        {
+            var students = await _studentService.GetAll();
+            return Json(new { data = students });
         }
 
         [Route("New")]
@@ -28,18 +34,20 @@ namespace Sms.Web.Controllers
             return View();
         }
 
-        [HttpPost]
-        [Route("PostData")]
-        public async Task<IActionResult> PostData(StudentDto stu)
+        [HttpPost("Save")]
+        public async Task<IActionResult> Save(StudentDto stu)
         {
             try
             {
-                if (!ModelState.IsValid) return RedirectToAction("Index", "Student");
+                bool status = false;
+                if (!ModelState.IsValid) return BadRequest();
                 if (stu.Id != 0)
                     await _studentService.UpdateStudent(stu);
                 else
                     await _studentService.AddStudent(stu);
-                return RedirectToAction("Index", "Student");
+                status = true;
+                return Ok();
+
             }
             catch (Exception e)
             {

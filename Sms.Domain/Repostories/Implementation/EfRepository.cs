@@ -11,17 +11,17 @@ using Sms.Domain.Repostories.Interfaces;
 
 namespace Sms.Domain.Repostories.Implementation
 {
-   public class EfRepository<T> : IRepository<T>, IAsyncRepository<T> where T : BaseEntity
+    public class EfRepository<T> : IRepository<T>, IAsyncRepository<T> where T : BaseEntity
     {
         private readonly SmsDbContext _dbContext;
         private readonly IMapper _mapper;
 
-        public EfRepository(SmsDbContext dbContext,IMapper mapper)
+        public EfRepository(SmsDbContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
             _mapper = mapper;
         }
-          public virtual T GetById(int id)
+        public virtual T GetById(int id)
         {
             return _dbContext.Set<T>().Find(id);
         }
@@ -43,7 +43,7 @@ namespace Sms.Domain.Repostories.Implementation
             var queryable = _dbContext.Set<T>().AsQueryable();
             if (spec.Criteria != null)
                 queryable = queryable.Where(spec.Criteria).AsQueryable();
-            
+
             var queryableResultWithIncludes = spec.Includes
                 .Aggregate(queryable,
                     (current, include) => current.Include(include));
@@ -120,6 +120,7 @@ namespace Sms.Domain.Repostories.Implementation
         public async Task<T> AddAsync(T entity)
         {
             await _dbContext.Set<T>().AddAsync(entity);
+            //await _dbContext.SaveChangesAsync();
             await _dbContext.SaveChangesAsync();
 
             return entity;

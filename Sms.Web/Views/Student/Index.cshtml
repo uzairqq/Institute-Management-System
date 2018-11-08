@@ -8,34 +8,67 @@
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
 
 @Html.ActionLink("New", "New", "Student", null, new { @class = "btn btn-primary" })
 
 
-<table id="studentTable" class="table table-hover table-bordered ">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Father Name</th>
-            <th>Email</th>
-            <th>Mobile Number</th>
-            <th>Home Number</th>
-            <th>Address</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
-</table>
-
+<div class="tablecontainer">
+    <a class="popup btn btn-primary" href="/home/save/0" style="margin-bottom: 20px; margin-top: 20px">Add New</a>
+    <table id="studentTable" class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Father Name</th>
+                <th>Email</th>
+                <th>Mobile Number</th>
+                <th>Home Number</th>
+                <th>Address</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+    </table>
+</div>
 
 
 <script>
     $(document).ready(function () {
-        $('#studentTable').DataTable();
+        $('#studentTable').DataTable({
+            ajax: "/Student/index/data",
+            columns: [
+                {
+                    data: "name"
+                    //render: function(data,type,customer) {
+                    //    return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                    //}
+                },
+                { data: "lastname", "autoWidth": true },
+                { data: "address", "autoWidth": true },
+                { data: "mobileNumber", "autoWidth": true },
+                { data: "homeNumber", "autoWidth": true },
+                { data: "email", "autoWidth": true },
+                {
+                    "data": "Id",
+                    "width": "50px",
+                    render: function (data) {
+                        return '<a class="btn btn-primary" href="/Student/PostData/' + data + '">Edit</a>';
+                    }
+                }
+
+                //{
+                //    render: function (data, type, row) {
+                //        return '<a id="btnDelete' + row.companyId + '" class="delete-class btn btn-info btn-lg-block btn-md-block btn-sm-block btn-xs-block" href="#" data-toggle="modal">Delete</a>';
+                //    }
+                //}
+            ]
+        });
     });
+    $('.tablecontainer').on('click',
+        'a.popup',
+        function(e) {
+            e.preventDefault();
+            OpenPopup($(this).attr('href'));
+        });
 </script>
 
 

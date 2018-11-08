@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Sms.Domain;
@@ -9,9 +10,10 @@ using Sms.Domain;
 namespace Sms.Domain.Migrations
 {
     [DbContext(typeof(SmsDbContext))]
-    partial class SmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181024132932_AddedClassesEntity")]
+    partial class AddedClassesEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,26 +31,15 @@ namespace Sms.Domain.Migrations
 
                     b.Property<int>("Age");
 
-                    b.Property<int>("ClassId");
-
-                    b.Property<int>("CreatedById");
-
-                    b.Property<DateTime>("CreatedOn");
-
                     b.Property<DateTime>("DateOfBirth");
 
                     b.Property<string>("Email")
                         .HasMaxLength(50);
 
-                    b.Property<string>("EmailAddress");
-
                     b.Property<int>("EmergencyContact");
 
-                    b.Property<string>("Gender");
-
-                    b.Property<int>("LastUpdatedById");
-
-                    b.Property<DateTime>("LastUpdatedOn");
+                    b.Property<string>("HomeNumber")
+                        .HasMaxLength(20);
 
                     b.Property<string>("Lastname")
                         .HasMaxLength(100);
@@ -60,17 +51,6 @@ namespace Sms.Domain.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<string>("Password");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Picture");
-
-                    b.Property<int>("RollNoId");
-
-                    b.Property<string>("UserName");
-
                     b.HasKey("Id");
 
                     b.ToTable("Students");
@@ -80,14 +60,6 @@ namespace Sms.Domain.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CreatedById");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<int>("LastUpdatedById");
-
-                    b.Property<DateTime>("LastUpdatedOn");
 
                     b.Property<string>("SubjectName");
 
@@ -105,19 +77,11 @@ namespace Sms.Domain.Migrations
 
                     b.Property<int>("Age");
 
-                    b.Property<int>("CreatedById");
-
-                    b.Property<DateTime>("CreatedOn");
-
                     b.Property<DateTime>("DateOfBirth");
 
                     b.Property<string>("Email");
 
                     b.Property<string>("LastName");
-
-                    b.Property<int>("LastUpdatedById");
-
-                    b.Property<DateTime>("LastUpdatedOn");
 
                     b.Property<string>("Name");
 
