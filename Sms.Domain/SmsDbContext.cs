@@ -28,6 +28,13 @@ namespace Sms.Domain
         public DbSet<NewsBoard> NewsBoards { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Transportation> Transportations { get; set; }
+        public DbSet<StudentClasses> StudentClasses { get; set; }
+        public DbSet<TeacherClasses> TeacherClasses { get; set; }
+        public DbSet<StudentTeacher> StudentTeachers { get; set; }
+        public DbSet<Branch> Branches { get; set; }
+        public Address Address { get; set; }
+
+
 
 
     }

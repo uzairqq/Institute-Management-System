@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Sms.Domain;
@@ -9,35 +10,16 @@ using Sms.Domain;
 namespace Sms.Domain.Migrations
 {
     [DbContext(typeof(SmsDbContext))]
-    partial class SmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181108212655_AddedMtoMofStudentAndTeache")]
+    partial class AddedMtoMofStudentAndTeache
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            modelBuilder.Entity("Sms.Domain.Entities.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CreatedById");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<string>("Details");
-
-                    b.Property<int>("LastUpdatedById");
-
-                    b.Property<DateTime>("LastUpdatedOn");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Address");
-                });
 
             modelBuilder.Entity("Sms.Domain.Entities.Assignements", b =>
                 {
@@ -126,36 +108,6 @@ namespace Sms.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AttendanceTypes");
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Branch", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AddressId");
-
-                    b.Property<int>("CreatedById");
-
-                    b.Property<DateTime>("CreatedOn");
-
-                    b.Property<int>("LastUpdatedById");
-
-                    b.Property<DateTime>("LastUpdatedOn");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(155);
-
-                    b.Property<string>("Principal")
-                        .IsRequired()
-                        .HasMaxLength(50);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.ToTable("Branches");
                 });
 
             modelBuilder.Entity("Sms.Domain.Entities.Classes", b =>
@@ -368,8 +320,6 @@ namespace Sms.Domain.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<string>("Email");
-
                     b.Property<string>("FirstName");
 
                     b.Property<string>("Gender");
@@ -383,8 +333,6 @@ namespace Sms.Domain.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<string>("Profession");
-
-                    b.Property<string>("RelationShip");
 
                     b.Property<int>("StudentId");
 
@@ -402,8 +350,6 @@ namespace Sms.Domain.Migrations
 
                     b.Property<int>("Amount");
 
-                    b.Property<int>("BillNumber");
-
                     b.Property<int>("ClassId");
 
                     b.Property<int?>("ClassesId");
@@ -412,12 +358,10 @@ namespace Sms.Domain.Migrations
 
                     b.Property<DateTime>("CreatedOn");
 
-                    b.Property<DateTime>("DateOfPayment");
+                    b.Property<DateTime>("Deadline");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1024);
-
-                    b.Property<string>("FeePeriod");
 
                     b.Property<int>("LastUpdatedById");
 
@@ -648,14 +592,6 @@ namespace Sms.Domain.Migrations
                     b.HasOne("Sms.Domain.Entities.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Sms.Domain.Entities.Branch", b =>
-                {
-                    b.HasOne("Sms.Domain.Entities.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

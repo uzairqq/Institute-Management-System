@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entities\Admin.cs" />
     <Compile Remove="Migrations\20181108124747_AddAssignments.cs" />
     <Compile Remove="Migrations\20181108124854_AddedAssignments.cs" />
     <Compile Remove="Migrations\20181108132459_Addd.cs" />

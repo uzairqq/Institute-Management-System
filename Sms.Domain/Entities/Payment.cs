@@ -15,9 +15,13 @@ namespace Sms.Domain.Entities
 
         public int Amount { get; set; }
 
+        public int BillNumber { get; set; }
+
         public string Status { get; set; }
 
-        public DateTime Deadline { get; set; }
+        public string FeePeriod { get; set; }
+
+        public DateTime DateOfPayment { get; set; }
 
         public int StudentId { get; set; }
         public Student Student { get; set; }

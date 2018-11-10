@@ -41,9 +41,6 @@ namespace Sms.Domain.Entities
 
         public DateTime DateOfBirth { get; set; }
 
-        public int ClassId { get; set; }
-        public Classes Classes { get; set; }
-        
         public string Picture { get; set; }
 
         public Transportation Transportation { get; set; }

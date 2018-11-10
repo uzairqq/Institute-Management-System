@@ -7,6 +7,10 @@ namespace Sms.Domain.Entities
 {
    public class Employee:BaseEntity
     {
+        public Employee()
+        {
+            Subjects=new List<Subject>();
+        }
 
         [StringLength(50)]
         [Required]
@@ -51,7 +55,7 @@ namespace Sms.Domain.Entities
         public int TransportationId { get; set; }
         public Transportation Transportation { get; set; }
 
-        //public int SubjectId { get; set; }
-        //public Subjects Subjects { get; set; }
+        public int SubjectId { get; set; }
+        public List<Subject> Subjects { get; set; }
     }
 }
