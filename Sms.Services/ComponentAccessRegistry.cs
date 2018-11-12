@@ -13,6 +13,7 @@ namespace Sms.Services
         {
             service.AddScoped<IStudentService, StudentService>();
             service.AddScoped<ITeacherService, TeacherService>();
+            service.AddScoped<IEmployeeTypeService, EmployeeTypeService>();
         }
     }
 }
