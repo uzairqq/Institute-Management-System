@@ -21,12 +21,14 @@ namespace Sms.Web.Controllers
             return View();
         }
 
-        [HttpGet("index/data")]
-        public async Task<IActionResult> IndexData()
-        {
-            var students = await _studentService.GetAll();
-            return Json(new { data = students });
-        }
+        //[HttpGet("index/data")]
+        //public async Task<IActionResult> IndexData()
+        //{
+        //    //var students = Get();
+        //    return Json(new { data = students });
+        //}
+
+        
 
         [Route("New")]
         public IActionResult New()
@@ -39,8 +41,7 @@ namespace Sms.Web.Controllers
         {
             try
             {
-                bool status = false;
-                if (!ModelState.IsValid) return BadRequest();
+                var status = false;
                 if (stu.Id != 0)
                     await _studentService.UpdateStudent(stu);
                 else
@@ -76,9 +77,14 @@ namespace Sms.Web.Controllers
         [Route("Update")]
         public async Task<IActionResult> Update(int id)
         {
-            var result = await _studentService.GetById(id);
-            return View("Update", result);
+            //var result = await _studentService.GetById(id);
+            return View("Update");
         }
+
+       
+
+        
+
 
         //public async Task<StudentDto> Get(int id)
         //{

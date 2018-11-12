@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sms.Domain;
 using Sms.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Sms.Web
 {
@@ -30,18 +31,18 @@ namespace Sms.Web
         {
             services.AddLogging();
 
-            services.AddDbContext<SmsDbContext>(options =>
-            {
-                options.UseNpgsql(_hostingEnvironment.IsDevelopment()
-                    ? Configuration.GetConnectionString("Development")
-                    : Configuration.GetConnectionString("Production"));
-                options.EnableSensitiveDataLogging();
+            //services.AddDbContext<SmsDbContext>(options =>
+            //{
+            //    options.UseNpgsql(_hostingEnvironment.IsDevelopment()
+            //        ? Configuration.GetConnectionString("Development")
+            //        : Configuration.GetConnectionString("Production"));
+            //    options.EnableSensitiveDataLogging();
 
-                options.ConfigureWarnings(builder => builder.Throw());
-            });
+            //    options.ConfigureWarnings(builder => builder.Throw());
+            //});
 
-            DataAccessRegistry.RegisterRepository(services);
-            ComponentAccessRegistry.RegisterServices(services);
+            //DataAccessRegistry.RegisterRepository(services);
+            //ComponentAccessRegistry.RegisterServices(services);
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -49,9 +50,7 @@ namespace Sms.Web
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddAutoMapper();
-
-
+            //services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -71,7 +70,7 @@ namespace Sms.Web
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+          
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
