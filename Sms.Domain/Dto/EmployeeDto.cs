@@ -5,7 +5,7 @@ using Sms.Domain.Entities;
 
 namespace Sms.Domain.Dto
 {
-   public class TeacherDto:BaseEntity
+   public class EmployeeDto:BaseEntity
     {
         public string Name { get; set; }
         public string LastName { get; set; }

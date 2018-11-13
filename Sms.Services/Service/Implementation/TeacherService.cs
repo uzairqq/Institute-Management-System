@@ -29,7 +29,7 @@ namespace Sms.Services.Service.Implementation
         }
 
         
-        public async Task<ResponseMessageDto> AddTeacher(TeacherDto dto)
+        public async Task<ResponseMessageDto> AddTeacher(EmployeeDto dto)
         {
             try
             {
@@ -56,11 +56,11 @@ namespace Sms.Services.Service.Implementation
             }
         }
 
-        public async Task<IEnumerable<TeacherDto>> GetAll()
+        public async Task<IEnumerable<EmployeeDto>> GetAll()
         {
             try
             {
-                var result = await _asyncRepository.ListAllAsync<TeacherDto>();
+                var result = await _asyncRepository.ListAllAsync<EmployeeDto>();
                 return result;
             }
             catch (Exception e)
@@ -70,7 +70,7 @@ namespace Sms.Services.Service.Implementation
             }
         }
 
-        public async Task<ResponseMessageDto> DeleteTeacher(TeacherDto dto)
+        public async Task<ResponseMessageDto> DeleteTeacher(EmployeeDto dto)
         {
             try
             {
@@ -97,11 +97,11 @@ namespace Sms.Services.Service.Implementation
             }
         }
 
-        public async Task<TeacherDto> GetById(int id)
+        public async Task<EmployeeDto> GetById(int id)
         {
             try
             {
-                return await _asyncRepository.GetByIdAsync<TeacherDto>(id);
+                return await _asyncRepository.GetByIdAsync<EmployeeDto>(id);
             }
             catch (Exception e)
             {
@@ -110,7 +110,7 @@ namespace Sms.Services.Service.Implementation
             }
         }
 
-        public async Task<ResponseMessageDto> UpdateTeacher(TeacherDto dto)
+        public async Task<ResponseMessageDto> UpdateTeacher(EmployeeDto dto)
         {
             try
             {

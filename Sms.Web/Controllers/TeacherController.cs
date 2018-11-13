@@ -30,7 +30,7 @@ namespace Sms.Web.Controllers
 
         [HttpPost]
         [Route("PostData")]
-        public async Task<IActionResult> PostData(TeacherDto dto)
+        public async Task<IActionResult> PostData(EmployeeDto dto)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Sms.Web.Controllers
 
         [HttpGet]
         [Route("Delete")]
-        public async Task<IActionResult> Delete(TeacherDto dto)
+        public async Task<IActionResult> Delete(EmployeeDto dto)
         {
             if (dto == null)
             {
