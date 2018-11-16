@@ -12,7 +12,6 @@ namespace Sms.Services
         public static void RegisterServices(IServiceCollection service)
         {
             service.AddScoped<IStudentService, StudentService>();
-            service.AddScoped<ITeacherService, TeacherService>();
             service.AddScoped<IEmployeeTypeService, EmployeeTypeService>();
         }
     }

@@ -11,32 +11,32 @@ using Sms.Services.Service.Interfaces;
 
 namespace Sms.Services.Service.Implementation
 {
-   public class TeacherService:ITeacherService
+   public class EmployeeService:IEmployeeService
     {
         private readonly IAsyncRepository<Employee> _asyncRepository;
         private readonly IMapper _mapper;
-        private readonly IRepository<Employee> _teacherRepository;
+        private readonly IRepository<Employee> _EmployeeRepository;
 
-        public TeacherService(
+        public EmployeeService(
             IAsyncRepository<Employee> asyncRepository,
             IMapper mapper,
-            IRepository<Employee> teacherRepository
+            IRepository<Employee> EmployeeRepository
             )
         {
             _asyncRepository = asyncRepository;
             _mapper = mapper;
-            _teacherRepository = teacherRepository;
+            _EmployeeRepository = EmployeeRepository;
         }
 
         
-        public async Task<ResponseMessageDto> AddTeacher(EmployeeDto dto)
+        public async Task<ResponseMessageDto> AddEmployee(EmployeeDto dto)
         {
             try
             {
-                var teacher = await _asyncRepository.AddAsync(_mapper.Map<Employee>(dto));
+                var Employee = await _asyncRepository.AddAsync(_mapper.Map<Employee>(dto));
                 return new ResponseMessageDto()
                 {
-                    Id = teacher.Id,
+                    Id = Employee.Id,
                     SuccessMessage = ResponseMessages.InsertionSuccessMessage,
                     Success = true,
                     Error = false
@@ -70,7 +70,7 @@ namespace Sms.Services.Service.Implementation
             }
         }
 
-        public async Task<ResponseMessageDto> DeleteTeacher(EmployeeDto dto)
+        public async Task<ResponseMessageDto> DeleteEmployee(EmployeeDto dto)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace Sms.Services.Service.Implementation
             }
         }
 
-        public async Task<ResponseMessageDto> UpdateTeacher(EmployeeDto dto)
+        public async Task<ResponseMessageDto> UpdateEmployee(EmployeeDto dto)
         {
             try
             {

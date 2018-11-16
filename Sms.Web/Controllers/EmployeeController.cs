@@ -8,18 +8,18 @@ using Sms.Services.Service.Interfaces;
 
 namespace Sms.Web.Controllers
 {
-    public class TeacherController : Controller
+    public class EmployeeController : Controller
     {
-        private readonly ITeacherService _teacherService;
+        private readonly IEmployeeService _employeeService;
 
-        public TeacherController(ITeacherService teacherService)
+        public EmployeeController(IEmployeeService employeeService)
         {
-            _teacherService = teacherService;
+            _employeeService = employeeService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var result = await _teacherService.GetAll();
+            var result = await _employeeService.GetAll();
             return View(result);
         }
 
@@ -34,12 +34,12 @@ namespace Sms.Web.Controllers
         {
             try
             {
-                if (!ModelState.IsValid) return RedirectToAction("Index", "Teacher");
+                if (!ModelState.IsValid) return RedirectToAction("Index", "Employee");
                 if (dto.Id != 0)
-                    await _teacherService.UpdateTeacher(dto);
+                    await _employeeService.UpdateEmployee(dto);
                 else
-                    await _teacherService.AddTeacher(dto);
-                return RedirectToAction("Index", "Teacher");
+                    await _employeeService.AddEmployee(dto);
+                return RedirectToAction("Index", "Employee");
             }
             catch (Exception e)
             {
@@ -50,7 +50,7 @@ namespace Sms.Web.Controllers
         [Route("Update")]
         public async Task<IActionResult> Update(int id)
         {
-            var result = await _teacherService.GetById(id);
+            var result = await _employeeService.GetById(id);
             return View("Update", result);
         }
 
@@ -63,14 +63,14 @@ namespace Sms.Web.Controllers
                 return NotFound();
             }
 
-            var teacher = await _teacherService.DeleteTeacher(dto);
+            var employee = await _employeeService.DeleteEmployee(dto);
 
-            if (teacher == null)
+            if (employee == null)
             {
                 return NotFound();
             }
 
-            return RedirectToAction("Index", "Teacher");
+            return RedirectToAction("Index", "Employee");
 
         }
 

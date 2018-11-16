@@ -30,19 +30,19 @@ namespace Sms.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddLogging();
+            services.AddAutoMapper();
+            services.AddDbContext<SmsDbContext>(options =>
+            {
+                options.UseNpgsql(_hostingEnvironment.IsDevelopment()
+                    ? Configuration.GetConnectionString("Development")
+                    : Configuration.GetConnectionString("Production"));
+                options.EnableSensitiveDataLogging();
 
-            //services.AddDbContext<SmsDbContext>(options =>
-            //{
-            //    options.UseNpgsql(_hostingEnvironment.IsDevelopment()
-            //        ? Configuration.GetConnectionString("Development")
-            //        : Configuration.GetConnectionString("Production"));
-            //    options.EnableSensitiveDataLogging();
+                options.ConfigureWarnings(builder => builder.Throw());
+            });
 
-            //    options.ConfigureWarnings(builder => builder.Throw());
-            //});
-
-            //DataAccessRegistry.RegisterRepository(services);
-            //ComponentAccessRegistry.RegisterServices(services);
+            DataAccessRegistry.RegisterRepository(services);
+            ComponentAccessRegistry.RegisterServices(services);
 
             services.Configure<CookiePolicyOptions>(options =>
             {

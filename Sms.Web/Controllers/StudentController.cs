@@ -16,25 +16,42 @@ namespace Sms.Web.Controllers
             _studentService = studentService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var students = await _studentService.GetAll();
+            return View(students);
         }
-
-        //[HttpGet("index/data")]
-        //public async Task<IActionResult> IndexData()
-        //{
-        //    //var students = Get();
-        //    return Json(new { data = students });
-        //}
-
-        
 
         [Route("New")]
         public IActionResult New()
         {
             return View();
         }
+
+        [HttpGet("grid")]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                return Json(new { data = await _studentService.GetAll() });
+            }
+            catch (Exception)
+            {
+                Console.WriteLine();
+                throw;
+            }
+        }
+
+        //[HttpGet("index/data")]
+        //public async Task<IActionResult> IndexData()
+        //{
+        //    var students =await Get();
+        //    return Json(new { data = students });
+        //}
+
+
+
+
 
         [HttpPost("Save")]
         public async Task<IActionResult> Save(StudentDto stu)
@@ -79,11 +96,11 @@ namespace Sms.Web.Controllers
         {
             //var result = await _studentService.GetById(id);
             return View("Update");
-        }
+        }   
 
-       
 
-        
+
+
 
 
         //public async Task<StudentDto> Get(int id)
@@ -92,20 +109,7 @@ namespace Sms.Web.Controllers
         //    return result;
         //}
 
-        //[Route("grid")]
-        //[HttpGet]
-        //public async Task<IActionResult> Get()
-        //{
-        //    try
-        //    {
-        //        return Json(new { data = await _studentService.GetAll() });
-        //    }
-        //    catch (Exception)
-        //    {
-        //        Console.WriteLine();
-        //        throw;
-        //    }
-        //}
+
     }
 
 

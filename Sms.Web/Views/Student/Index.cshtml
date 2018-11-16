@@ -4,72 +4,117 @@
     Layout = "_Layout";
 }
 
+<br/>
+<div class="container-fluid">
+    <ul class="list-inline">
+        <li>
+            <input type="button" asp-action="New" class="btn btn-primary" value="New"/>
+        </li>
+    </ul>
+</div>
+<div class="container-fluid">
 
-
-
-
-
-
-@Html.ActionLink("New", "New", "Student", null, new { @class = "btn btn-primary" })
-
-
-<div class="tablecontainer">
-    <a class="popup btn btn-primary" href="/home/save/0" style="margin-bottom: 20px; margin-top: 20px">Add New</a>
-    <table id="studentTable" class="table table-hover table-bordered">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Father Name</th>
-                <th>Email</th>
-                <th>Mobile Number</th>
-                <th>Home Number</th>
-                <th>Address</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-    </table>
+    <div class="form-group">
+        <div class="table-responsive">
+            <table id="studentTable" class="table table-hover table-bordered" style="width: 100%">
+                <thead class="bg-primary">
+                <tr>
+                    <td>Picture</td>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Contact</th>
+                    <td>Age</td>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Picture</td>
+                        <td>@item.Name @item.Lastname</td>
+                        <td>@item.Email</td>
+                        <td>@item.Gender</td>
+                        <td>@item.Address</td>
+                        <td>@item.Contact</td>
+                        <td>@item.Age</td>
+                        <td>
+                            <div class="float-left"  style="margin-left: 7px;">
+                                <a asp-controller="Student" asp-action="Update"><i class="fa fa-user"></i></a>
+                            </div>
+                            <div class="float-left" style="margin-left: 7px;">
+                                <span><a asp-controller="Student" asp-action="Delete"><i class="fa fa-remove"></i></a></span>
+                            </div>
+                            @*@Html.ActionLink("Update", "Update", "Student", new {id = item.Id, item.Name}, new {@class = "btn btn-primary"}) ||
+                            @Html.ActionLink("Delete", "Delete", "Student", new {id = item.Id}, new {@class = "btn btn-danger"})*@
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 
+
+
+
+<script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#studentTable').DataTable({
-            ajax: "/Student/index/data",
-            columns: [
-                {
-                    data: "name"
-                    //render: function(data,type,customer) {
-                    //    return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
-                    //}
-                },
-                { data: "lastname", "autoWidth": true },
-                { data: "address", "autoWidth": true },
-                { data: "mobileNumber", "autoWidth": true },
-                { data: "homeNumber", "autoWidth": true },
-                { data: "email", "autoWidth": true },
-                {
-                    "data": "Id",
-                    "width": "50px",
-                    render: function (data) {
-                        return '<a class="btn btn-primary" href="/Student/PostData/' + data + '">Edit</a>';
-                    }
-                }
 
-                //{
-                //    render: function (data, type, row) {
-                //        return '<a id="btnDelete' + row.companyId + '" class="delete-class btn btn-info btn-lg-block btn-md-block btn-sm-block btn-xs-block" href="#" data-toggle="modal">Delete</a>';
-                //    }
-                //}
-            ]
         });
     });
-    $('.tablecontainer').on('click',
-        'a.popup',
-        function(e) {
-            e.preventDefault();
-            OpenPopup($(this).attr('href'));
-        });
 </script>
+
+@*<script>
+        $(document).ready(function () {
+            $('#studentTable').DataTable({
+                ajax: "/Student/index/data",
+                columns: [
+                    {
+                        data: "name"
+                        //render: function(data,type,customer) {
+                        //    return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                        //}
+                    },
+                    { data: "lastname", "autoWidth": true },
+                    { data: "address", "autoWidth": true },
+                    { data: "mobileNumber", "autoWidth": true },
+                    { data: "homeNumber", "autoWidth": true },
+                    { data: "email", "autoWidth": true },
+                    {
+                        "data": "Id",
+                        "width": "50px",
+                        render: function (data) {
+                            return '<a class="btn btn-primary" href="/Student/PostData/' + data + '">Edit</a>';
+                        }
+                    }
+
+                    //{
+                    //    render: function (data, type, row) {
+                    //        return '<a id="btnDelete' + row.companyId + '" class="delete-class btn btn-info btn-lg-block btn-md-block btn-sm-block btn-xs-block" href="#" data-toggle="modal">Delete</a>';
+                    //    }
+                    //}
+                ]
+            });
+        });
+        $('.tablecontainer').on('click',
+            'a.popup',
+            function(e) {
+                e.preventDefault();
+                OpenPopup($(this).attr('href'));
+            });
+    </script>*@
 
 
 

@@ -1,4 +1,4 @@
-﻿@model Sms.Domain.Dto.TeacherDto
+﻿@model Sms.Domain.Dto.EmployeeDto
 
 <div class="col-lg-12">
     <div class="card">
@@ -6,7 +6,7 @@
             <strong>Teacher Form</strong>
         </div>
         <div class="card-body card-block">
-            <form asp-controller="Teacher" asp-action="PostData" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <form asp-controller="Employee" asp-action="PostData" method="post" enctype="multipart/form-data" class="form-horizontal">
                 @*<div class="row form-group">
             <div class="col col-md-3"><label class=" form-control-label">Static</label></div>
             <div class="col-12 col-md-9">
