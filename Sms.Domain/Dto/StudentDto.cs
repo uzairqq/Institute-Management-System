@@ -6,9 +6,10 @@ using Sms.Domain.Entities;
 
 namespace Sms.Domain.Dto
 {
-   public class StudentDto:BaseEntity
+    public class StudentDto
     {
-       
+        public int? Id { get; set; }
+
         public string Name { get; set; }
 
         public string Lastname { get; set; }
@@ -20,7 +21,7 @@ namespace Sms.Domain.Dto
         //public string EmailAddress { get; set; }
 
         public string Gender { get; set; }
-      
+
         public string Address { get; set; }
 
         public string Contact { get; set; }

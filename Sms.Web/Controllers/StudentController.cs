@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using Sms.Domain.Dto;
 using Sms.Services.Service.Interfaces;
 
@@ -48,23 +50,41 @@ namespace Sms.Web.Controllers
         //    var students =await Get();
         //    return Json(new { data = students });
         //}
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody]StudentDto dto)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                var serviceCall = await _studentService.AddStudent(dto);
+                return Json(serviceCall);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
 
-
+        [HttpGet("GetById/{id}")]
+        public async Task<JsonResult> Get(int id)
+        {
+            return Json(new { data = await _studentService.GetById(id) });
+            //var result = await _studentService.GetById(id);
+            ////return Json(result);
+        }
 
 
 
         [HttpPost("Save")]
-        public async Task<IActionResult> Save(StudentDto stu)
+        public async Task<IActionResult> Save([FromBody] StudentDto dto)
         {
             try
             {
-                var status = false;
-                if (stu.Id != 0)
-                    await _studentService.UpdateStudent(stu);
-                else
-                    await _studentService.AddStudent(stu);
-                status = true;
-                return Ok();
+                if (!ModelState.IsValid) return BadRequest(ModelState);
+                if (dto.Id != 0) return Json(await _studentService.UpdateStudent(dto));
+                return Json(await _studentService.AddStudent(dto));
+
 
             }
             catch (Exception e)
@@ -74,10 +94,10 @@ namespace Sms.Web.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("Delete")]
-        public async Task<IActionResult> Delete(StudentDto dto)
+        [HttpDelete("Delete")]
+        public async Task<IActionResult> Delete([FromBody] StudentDto dto)
         {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
             if (dto == null)
             {
                 return NotFound();
@@ -89,14 +109,15 @@ namespace Sms.Web.Controllers
                 return NotFound();
             }
 
-            return RedirectToAction("Index", "Student");
+            return Json(student);
+            //return RedirectToAction("Index", "Student");
         }
         [Route("Update")]
         public async Task<IActionResult> Update(int id)
         {
             //var result = await _studentService.GetById(id);
             return View("Update");
-        }   
+        }
 
 
 

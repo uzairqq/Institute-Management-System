@@ -20,6 +20,8 @@
         <link rel="stylesheet" href="~/assets/css/themify-icons.css">
         <link rel="stylesheet" href="~/assets/css/flag-icon.min.css">
         <link rel="stylesheet" href="~/assets/css/cs-skin-elastic.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+        @*<link href="toastr.css" rel="stylesheet" />*@
         <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
         <link rel="stylesheet" href="~/assets/scss/style.css">
         @*<link href="assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">*@
@@ -45,29 +47,29 @@
                     </li>
                     <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
-                        <a asp-area="" asp-controller="Student" asp-action="Index"  > <i class="menu-icon fa fa-laptop"></i>Student</a>
+                        <a asp-area="" asp-controller="Student" asp-action="Index"> <i class="menu-icon fa fa-laptop"></i>Student</a>
                         @*<ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Buttons</a></li>
-                            <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>
-                            <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a></li>
-                            <li><i class="fa fa-share-square-o"></i><a href="ui-social-buttons.html">Social Buttons</a></li>
-                            <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Cards</a></li>
-                            <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Alerts</a></li>
-                            <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Progress Bars</a></li>
-                            <li><i class="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li>
-                            <li><i class="fa fa-book"></i><a href="ui-switches.html">Switches</a></li>
-                            <li><i class="fa fa-th"></i><a href="ui-grids.html">Grids</a></li>
-                            <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Typography</a></li>
-                        </ul>*@
+                                <li><i class="fa fa-puzzle-piece"></i><a href="ui-buttons.html">Buttons</a></li>
+                                <li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>
+                                <li><i class="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a></li>
+                                <li><i class="fa fa-share-square-o"></i><a href="ui-social-buttons.html">Social Buttons</a></li>
+                                <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Cards</a></li>
+                                <li><i class="fa fa-exclamation-triangle"></i><a href="ui-alerts.html">Alerts</a></li>
+                                <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Progress Bars</a></li>
+                                <li><i class="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li>
+                                <li><i class="fa fa-book"></i><a href="ui-switches.html">Switches</a></li>
+                                <li><i class="fa fa-th"></i><a href="ui-grids.html">Grids</a></li>
+                                <li><i class="fa fa-file-word-o"></i><a href="ui-typgraphy.html">Typography</a></li>
+                            </ul>*@
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a asp-area="" asp-controller="Employee" asp-action="Index"> <i class="menu-icon fa fa-laptop"></i>Employee</a>
 
                         @*<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>*@
                         @*<ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
-                            <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
-                        </ul>*@
+                                <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
+                                <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
+                            </ul>*@
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
@@ -232,38 +234,66 @@
             </div>
         </header><!-- /header -->
         <!-- Header-->
-        
         <!-- .content -->
         <div class="card">
             @RenderBody()
         </div>
         <!-- .content -->
-        
+
 
     </div><!-- /#right-panel -->
     <!-- Right Panel -->
     <environment include="Development">
-        <script src="~/assets/js/vendor/jquery-2.1.4.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script>
+            window.$ = window.jQuery;
+        </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
         <script src="~/assets/js/plugins.js"></script>
         <script src="~/assets/js/main.js"></script>
         @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>*@
         @*<script src="~/assets/js/lib/chart-js/Chart.bundle.js"></script>*@
         @*<script src="~/assets/js/dashboard.js"></script>*@
-        <script src="~/assets/js/widgets.js"></script>
-        <script src="~/assets/js/lib/vector-map/jquery.vmap.js"></script>
+        @*<script src="toastr.js"></script>*@
+        @*<script src="~/assets/js/widgets.js"></script>*@
+
+        @*<script src="~/assets/js/lib/vector-map/jquery.vmap.js"></script>
         <script src="~/assets/js/lib/vector-map/jquery.vmap.min.js"></script>
         <script src="~/assets/js/lib/vector-map/jquery.vmap.sampledata.js"></script>
-        <script src="~/assets/js/lib/vector-map/country/jquery.vmap.world.js"></script>
+        <script src="~/assets/js/lib/vector-map/country/jquery.vmap.world.js"></script>*@
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
         <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
     </environment>
-    <script>
+<script>
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "6000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+</script>
+    @RenderSection("Scripts", false);
+    
+    @*<script>
         (function ($) {
             "use strict";
 
@@ -279,6 +309,6 @@
                 scaleColors: ['#1de9b6', '#03a9f5'],
                 normalizeFunction: 'polynomial'
             });
-        })(jQuery);</script>
+        })(jQuery);</script>*@
 </body>
 </html>

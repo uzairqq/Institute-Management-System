@@ -6,7 +6,7 @@ namespace Sms.Constants
 {
     public class ResponseMessageDto
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         public bool Success { get; set; }
         public bool Error { get; set; }
         public string SuccessMessage { get; set; }
