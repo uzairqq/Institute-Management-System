@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCaching.Internal;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Sms.Domain.Dto;
@@ -20,9 +21,11 @@ namespace Sms.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var students = await _studentService.GetAll();
-            return View(students);
+            var result = await _studentService.GetAll();
+            return View(result);
         }
+
+
 
         [Route("New")]
         public IActionResult New()
