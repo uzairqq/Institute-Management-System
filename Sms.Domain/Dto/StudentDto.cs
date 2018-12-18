@@ -8,10 +8,14 @@ namespace Sms.Domain.Dto
 {
     public class StudentDto
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
+        [Required]
+        [Display(Name = "First Name")]
         public string Name { get; set; }
 
+        [Required]
+        [Display(Name = "Last Name")]
         public string Lastname { get; set; }
 
         //public int RollNoId { get; set; }
@@ -20,6 +24,7 @@ namespace Sms.Domain.Dto
 
         //public string EmailAddress { get; set; }
 
+        [EnumDataType(typeof(Gender))]
         public string Gender { get; set; }
 
         public string Address { get; set; }
@@ -34,10 +39,18 @@ namespace Sms.Domain.Dto
 
         public int EmergencyContact { get; set; }
 
+        [Display(Name = "Date of Birth")]
         public DateTime DateOfBirth { get; set; }
 
         public string Picture { get; set; }
 
         //public Transportation Transportation { get; set; }
+
+       
+    }
+    public enum Gender
+    {
+        Male = 1,
+        Female = 2
     }
 }

@@ -21,6 +21,7 @@ namespace Sms.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Name = "Student";
             var result = await _studentService.GetAll();
             return View(result);
         }
@@ -28,10 +29,21 @@ namespace Sms.Web.Controllers
 
 
         [Route("New")]
-        public IActionResult New()
+        public IActionResult StudentForm(int id)
         {
-            return View();
+            if (id == 0)
+            {
+                ViewBag.Name = "New Student";
+                return View();
+            }
+            else
+            {
+                ViewBag.Name = "Update Student";
+                return View();
+            }
+
         }
+        
 
         [HttpGet("grid")]
         public async Task<IActionResult> Get()
@@ -46,6 +58,7 @@ namespace Sms.Web.Controllers
                 throw;
             }
         }
+
 
         //[HttpGet("index/data")]
         //public async Task<IActionResult> IndexData()
