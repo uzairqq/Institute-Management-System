@@ -1,7 +1,6 @@
 ﻿@model IEnumerable<Sms.Domain.Dto.StudentDto>
 @{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="card">
@@ -58,11 +57,16 @@
     </div>
 </div>
 
-@section scripts{
+@section styles {
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+}
 
+@section scripts {
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function () {
-            jQuery('#studentTable').DataTable();
+        $(document).ready(function () {
+            $('#studentTable').DataTable();
         });
     </script>
 }
