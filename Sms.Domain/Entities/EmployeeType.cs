@@ -10,5 +10,8 @@ namespace Sms.Domain.Entities
         [StringLength(100)]
         [Required]
         public string Type { get; set; }
+        //Management
+        //Teachers
+        //Janitors
     }
 }

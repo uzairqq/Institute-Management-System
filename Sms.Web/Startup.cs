@@ -83,11 +83,16 @@ namespace Sms.Web
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             // This will add "Libs" as another valid static content location
-
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Dashboard}/{action=Index}");
+            });
 
 
             app.UseCookiePolicy();
-            app.UseMvcWithDefaultRoute();
+            //app.UseMvcWithDefaultRoute();
         }
     }
 }
