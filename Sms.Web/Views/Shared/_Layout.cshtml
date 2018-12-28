@@ -34,7 +34,16 @@
         @{
             Html.RenderPartial("_LeftSideBar");
         }
-
+        <p>Breadcrumbs</p>
+        @Html.ActionLink("Home", "Index", "Home")
+        @if (ViewContext.RouteData.Values["controller"].ToString() != "Home")
+        {
+            @:> @Html.ActionLink(ViewContext.RouteData.Values["controller"].ToString(), "Index", ViewContext.RouteData.Values["controller"].ToString())
+        }
+        @if (ViewContext.RouteData.Values["action"].ToString() != "Index")
+        {
+            @:> @Html.ActionLink(ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["action"].ToString(), ViewContext.RouteData.Values["controller"].ToString())
+        }
         <!-- Left Sidebar End -->
         <!-- ============================================================== -->
         <!-- Start right Content here -->
@@ -43,12 +52,9 @@
             <!-- Start content -->
             @RenderBody()
 
-
-            
-
-        @{
-            Html.RenderPartial("_BottonFooter");
-        }
+            @{
+                Html.RenderPartial("_BottonFooter");
+            }
 
 
         </div>
@@ -56,12 +62,11 @@
         <!-- End Right content here -->
         <!-- ============================================================== -->
         <!-- Right Sidebar -->
-      
         <!-- /Right-bar -->
 
-    @{
-        Html.RenderPartial("_RightBarPartial");
-    }
+        @{
+            Html.RenderPartial("_RightBarPartial");
+        }
 
     </div>
     <!-- END wrapper -->
